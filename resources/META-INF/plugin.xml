@@ -1,0 +1,48 @@
+<idea-plugin>
+  <id>MyBatisLogSqlExtract</id>
+  <name>MyBatis Log Sql Extract</name>
+  <version>1.0</version>
+  <vendor email="" url="">wxl</vendor>
+
+  <description><![CDATA[
+      MyBatis Log Sql Extract
+      MyBatis Log Sql Extract
+      MyBatis Log Sql Extract
+    ]]></description>
+
+  <change-notes><![CDATA[
+      MyBatis Log Sql Extract
+      MyBatis Log Sql Extract
+    ]]>
+  </change-notes>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+<!--  <depends>com.intellij.modules.platform</depends>-->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <consoleFilterProvider implementation="com.wxl.MyBatisLogProvider"/>
+    <executor implementation="com.wxl.tail.TailRunExecutor" id="MyBatisLogTail"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="TailMyBatisLog0" class="com.wxl.action.TailMyBatisLog" icon="/com/wxl/icon/mybatis.png"
+            text="MyBatis Log Plugin" description="MyBatisLogSqlExtract">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift O"/>
+    </action>
+
+    <!-- restore sql from selection -->
+    <action class="com.wxl.action.RestoreSqlForSelection" id="RestoreSqlAction0" icon="/com/wxl/icon/filter.png"
+            text="Sql Extract" description="MyBatisLogSqlExtract">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ConsoleEditorPopupMenu" anchor="before" relative-to-action="ConsoleView.ClearAll"/>
+    </action>
+  </actions>
+
+</idea-plugin>
